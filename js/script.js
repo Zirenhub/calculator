@@ -32,12 +32,31 @@ function updateDisplay(selfBtn) {
 
 function operate(selfBtn) {
   operator = selfBtn;
-  temp = +temp + +displayValue;
-  displayValue = '';
+  if (operator === '+') {
+    temp = +temp + +displayValue;
+    displayValue = '';
+  } else if (operator === '-') {
+    temp = +temp - +displayValue;
+    displayValue = '';
+  } else if (operator === 'x') {
+    temp = +temp * +displayValue;
+    displayValue = '';
+  } else if (operator === '%') {
+    temp = +temp / +displayValue;
+    displayValue = '';
+  }
 }
 
 function equalsSum() {
-  sum = +temp + +displayValue;
+  if (operator === '+') {
+    sum = +temp + +displayValue;
+  } else if (operator === '-') {
+    sum = +temp - +displayValue;
+  } else if (operator === 'x') {
+    sum = +temp * +displayValue;
+  } else if (operator === '%') {
+    sum = +temp / +displayValue;
+  }
   display.value = Number(sum);
   displayValue = '';
   temp = sum;
