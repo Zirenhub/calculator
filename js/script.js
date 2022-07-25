@@ -22,12 +22,21 @@ function divide(numOne, numTwo) {
 let displayValue = '';
 let operator = '';
 let temp = '';
+let tempTest = [];
 let sum = '';
+
+function clearEverything() {
+  displayValue = '';
+  display.value = 0;
+  operator = '';
+  temp = '';
+  sum = '';
+}
 
 function updateDisplay(selfBtn) {
   display.value = selfBtn;
   displayValue += display.value;
-  display.value = displayValue;
+  display.value = +displayValue;
 }
 
 function operate(selfBtn) {
@@ -36,30 +45,30 @@ function operate(selfBtn) {
     temp = +temp + +displayValue;
     displayValue = '';
   } else if (operator === '-') {
-    temp = +temp - +displayValue;
+    tempTest.push(+displayValue);
     displayValue = '';
   } else if (operator === 'x') {
-    temp = +temp * +displayValue;
-    displayValue = '';
   } else if (operator === '%') {
-    temp = +temp / +displayValue;
-    displayValue = '';
   }
 }
 
 function equalsSum() {
   if (operator === '+') {
-    sum = +temp + +displayValue;
+    sum = add(+temp, +displayValue);
+    display.value = Number(sum);
+    displayValue = '';
+    temp = sum;
   } else if (operator === '-') {
-    sum = +temp - +displayValue;
+    sum = tempTest[0];
+    for (let i = 1; i < tempTest.length; i++) {
+      sum = +sum - +tempTest[i] - +displayValue;
+    }
+    display.value = Number(sum);
+    displayValue = Number(sum);
+    tempTest = [];
   } else if (operator === 'x') {
-    sum = +temp * +displayValue;
   } else if (operator === '%') {
-    sum = +temp / +displayValue;
   }
-  display.value = Number(sum);
-  displayValue = '';
-  temp = sum;
 }
 
 numberButtons.forEach((button) => {
@@ -78,4 +87,8 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener('click', () => {
   equalsSum();
+});
+
+clearButton.addEventListener('click', () => {
+  clearEverything();
 });
