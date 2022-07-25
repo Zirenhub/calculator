@@ -6,30 +6,15 @@ const equalsButton = document.querySelector('.equals-button');
 const clearButton = document.querySelector('.clear-button');
 const display = document.querySelector('.display-box');
 
-function add(numOne, numTwo) {
-  return numOne + numTwo;
-}
-function subtract(numOne, numTwo) {
-  return numOne - numTwo;
-}
-function multiply(numOne, numTwo) {
-  return numOne * numTwo;
-}
-function divide(numOne, numTwo) {
-  return numOne / numTwo;
-}
-
 let displayValue = '';
 let operator = '';
-let temp = '';
-let tempTest = [];
 let sum = '';
+let temp = '';
 
 function clearEverything() {
   displayValue = '';
   display.value = 0;
   operator = '';
-  temp = '';
   sum = '';
 }
 
@@ -41,34 +26,34 @@ function updateDisplay(selfBtn) {
 
 function operate(selfBtn) {
   operator = selfBtn;
-  if (operator === '+') {
-    temp = +temp + +displayValue;
-    displayValue = '';
-  } else if (operator === '-') {
-    tempTest.push(+displayValue);
-    displayValue = '';
-  } else if (operator === 'x') {
-  } else if (operator === '%') {
-  }
+  temp = +displayValue;
+  displayValue = '';
+  sum = '';
 }
 
 function equalsSum() {
-  if (operator === '+') {
-    sum = add(+temp, +displayValue);
-    display.value = Number(sum);
-    displayValue = '';
-    temp = sum;
-  } else if (operator === '-') {
-    sum = tempTest[0];
-    for (let i = 1; i < tempTest.length; i++) {
-      sum = +sum - +tempTest[i] - +displayValue;
-    }
-    display.value = Number(sum);
-    displayValue = Number(sum);
-    tempTest = [];
-  } else if (operator === 'x') {
-  } else if (operator === '%') {
+  temp = +temp;
+  displayValue = +displayValue;
+
+  switch (operator) {
+    case '+':
+      sum = temp + displayValue;
+      break;
+    case '-':
+      sum = temp - displayValue;
+      break;
+    case 'x':
+      sum = temp * displayValue;
+      break;
+    case '%':
+      sum = temp / displayValue;
+      break;
+    default:
+      sum = displayValue;
   }
+  display.value = +sum;
+  temp = 0;
+  displayValue = +sum;
 }
 
 numberButtons.forEach((button) => {
