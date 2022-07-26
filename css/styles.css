@@ -38,7 +38,7 @@ body{
 .calculator {
     background-color: whitesmoke;
     width: 400px;
-    height: 480px;
+    height: 535px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -96,9 +96,21 @@ button:hover {
 }
 
 #equalsBtn {
-    background-color: rgb(246, 240, 255);
+    background-color: rgb(255, 219, 160);
 }
 
 #clearBtn {
-    background-color: rgb(214, 255, 196);
+    background-color: rgb(212, 217, 255);
+}
+
+#zeroBtn {
+    width: 250px;
+}
+
+#dotBtn {
+    background-color:gainsboro
+}
+
+#backSpaceBtn {
+    background-color: rgb(138, 202, 171);
 }
