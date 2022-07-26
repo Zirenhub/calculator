@@ -17,6 +17,8 @@ function clearEverything() {
   display.value = 0;
   operator = '';
   sum = '';
+  temp = '';
+  tempOperator = '';
 }
 
 function updateDisplay(selfBtn) {
@@ -35,6 +37,10 @@ function operate(selfBtn) {
     if (temp) {
       if (tempOperator === '-') {
         temp = temp - displayValue;
+      } else if (tempOperator === 'x') {
+        temp = temp * displayValue;
+      } else if (tempOperator === '%') {
+        temp = temp / displayValue;
       } else {
         temp = temp + displayValue;
       }
@@ -50,6 +56,10 @@ function operate(selfBtn) {
     if (temp) {
       if (tempOperator === '+') {
         temp = temp + displayValue;
+      } else if (tempOperator === 'x') {
+        temp = temp * displayValue;
+      } else if (tempOperator === '%') {
+        temp = temp / displayValue;
       } else {
         temp = temp - displayValue;
       }
@@ -61,6 +71,44 @@ function operate(selfBtn) {
       displayValue = 0;
       tempOperator = '-';
     }
+  } else if (operator === 'x') {
+    if (temp) {
+      if (tempOperator === '+') {
+        temp = temp + displayValue;
+      } else if (tempOperator === '-') {
+        temp = temp - displayValue;
+      } else if (tempOperator === '%') {
+        temp = temp / displayValue;
+      } else {
+        temp = temp * displayValue;
+      }
+      displayValue = 0;
+      display.value = temp;
+      tempOperator = 'x';
+    } else {
+      temp = displayValue;
+      displayValue = 0;
+      tempOperator = 'x';
+    }
+  } else if (operator === '%') {
+    if (temp) {
+      if (tempOperator === '+') {
+        temp = temp + displayValue;
+      } else if (tempOperator === '-') {
+        temp = temp - displayValue;
+      } else if (tempOperator === 'x') {
+        temp = temp * displayValue;
+      } else {
+        temp = temp / displayValue;
+      }
+      displayValue = 0;
+      display.value = temp;
+      tempOperator = '%';
+    } else {
+      temp = displayValue;
+      displayValue = 0;
+      tempOperator = '%';
+    }
   }
 }
 
@@ -68,6 +116,7 @@ function equalsSum() {
   temp = +temp;
   displayValue = +displayValue;
   sum = +sum;
+
   if (tempOperator === '+') {
     sum = temp + displayValue;
     displayValue = sum;
@@ -75,6 +124,16 @@ function equalsSum() {
     temp = 0;
   } else if (tempOperator === '-') {
     sum = temp - displayValue;
+    displayValue = sum;
+    display.value = sum;
+    temp = 0;
+  } else if (tempOperator === 'x') {
+    sum = temp * displayValue;
+    displayValue = sum;
+    display.value = sum;
+    temp = 0;
+  } else if (tempOperator === '%') {
+    sum = temp / displayValue;
     displayValue = sum;
     display.value = sum;
     temp = 0;
