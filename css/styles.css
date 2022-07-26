@@ -45,6 +45,7 @@ body{
 }
 
 .display-container {
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     margin-top: 20px;
 }
 
@@ -55,6 +56,7 @@ body{
     text-align: right;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 36px;
+    border: 0;
 }
 
 .buttons-container {
@@ -75,4 +77,28 @@ body{
     height: 70px;
     font-family: 'Chakra Petch', sans-serif;
     font-size: x-large;
+    border: 1px solid black;
+}
+
+button:hover {
+    background-color: #67e2b1;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+.number-button {
+    background-color:rgb(222, 239, 255)
+}
+
+.operator-button {
+    background-color: rgb(255, 233, 233);
+}
+
+#equalsBtn {
+    background-color: rgb(246, 240, 255);
+}
+
+#clearBtn {
+    background-color: rgb(214, 255, 196);
 }
