@@ -11,6 +11,7 @@ let operator = '';
 let sum = '';
 let temp = '';
 let tempOperator = '';
+let decimalCheck = '';
 
 function clearEverything() {
   displayValue = '';
@@ -25,6 +26,13 @@ function updateDisplay(selfBtn) {
   display.value = selfBtn;
   displayValue += display.value;
   display.value = +displayValue;
+  decimalCheck = displayValue.replace(/[0-9]/g, '');
+  if (decimalCheck === '.') {
+    console.log('decimal detected');
+    document.getElementById('dotBtn').disabled = true;
+  } else {
+    document.getElementById('dotBtn').disabled = false;
+  }
 }
 
 function operate(selfBtn) {
@@ -109,6 +117,9 @@ function operate(selfBtn) {
       displayValue = 0;
       tempOperator = '%';
     }
+  } else {
+    displayValue = (displayValue - (displayValue % 10)) / 10;
+    display.value = displayValue;
   }
 }
 
